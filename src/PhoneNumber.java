@@ -21,6 +21,7 @@ public class PhoneNumber {
 	
 	public void sendSms(String msg, int num){
 		try {
+			String no = Integer.toString(num);
             // Assume default encoding.
             FileWriter fileWriter =  new FileWriter(outbox, true);
 
@@ -29,11 +30,12 @@ public class PhoneNumber {
 
             // Note that write() does not automatically
             // append a newline character
+            bufferedWriter.append("To :" + no + " Message: ");
             bufferedWriter.append(msg);
             bufferedWriter.newLine();
             // Always close files.
             bufferedWriter.close();
-            String no = Integer.toString(num);
+            
     		String receiverInbox = no.concat("inbox.txt");
     		FileWriter fileWriter2 =  new FileWriter(receiverInbox, true);
 
@@ -42,6 +44,7 @@ public class PhoneNumber {
 
             // Note that write() does not automatically
             // append a newline character
+            bufferedWriter2.append("From :"+phoneNumber+ " Message: ");
             bufferedWriter2.append(msg);
             bufferedWriter2.newLine();
             bufferedWriter2.close();
